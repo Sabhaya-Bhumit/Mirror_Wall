@@ -28,6 +28,7 @@ late InAppWebViewController inAppWebViewController;
 late PullToRefreshController pullToRefreshController;
 bool isback = false;
 bool isforword = false;
+double _progress = 0;
 
 class _homeState extends State<home> {
   @override
@@ -64,13 +65,15 @@ class _homeState extends State<home> {
                           url: Uri.parse("https://www.google.co.in")));
                 },
                 icon: const Icon(Icons.home)),
-            IconButton(
-                onPressed: () async {
-                  if (await inAppWebViewController.canGoBack()) {
-                    await inAppWebViewController.goBack();
-                  }
-                },
-                icon: const Icon(Icons.arrow_back_ios)),
+            (isback)
+                ? IconButton(
+                    onPressed: () async {
+                      if (await inAppWebViewController.canGoBack()) {
+                        await inAppWebViewController.goBack();
+                      }
+                    },
+                    icon: const Icon(Icons.arrow_back_ios))
+                : Container(),
             IconButton(
                 onPressed: () async {
                   if (Platform.isIOS) {
@@ -82,13 +85,15 @@ class _homeState extends State<home> {
                   }
                 },
                 icon: const Icon(Icons.refresh)),
-            IconButton(
-                onPressed: () async {
-                  if (await inAppWebViewController.canGoForward()) {
-                    await inAppWebViewController.goForward();
-                  }
-                },
-                icon: const Icon(Icons.arrow_forward_ios_sharp))
+            (isforword)
+                ? IconButton(
+                    onPressed: () async {
+                      if (await inAppWebViewController.canGoForward()) {
+                        await inAppWebViewController.goForward();
+                      }
+                    },
+                    icon: const Icon(Icons.arrow_forward_ios_sharp))
+                : Container()
           ],
         ),
         floatingActionButton: Row(
@@ -149,6 +154,14 @@ class _homeState extends State<home> {
         body: Column(
           children: [
             const SizedBox(height: 10),
+            _progress < 1
+                ? SizedBox(
+                    height: 3,
+                    child: LinearProgressIndicator(
+                      value: _progress,
+                    ),
+                  )
+                : SizedBox(),
             Container(
               height: height * 0.8,
               child: InAppWebView(
@@ -161,6 +174,21 @@ class _homeState extends State<home> {
                 onWebViewCreated: (val) {
                   inAppWebViewController = val;
                 },
+                onProgressChanged: (controller, progress) async {
+                  setState(() {
+                    _progress = progress / 100;
+                  });
+                  iscanback();
+                  if (await inAppWebViewController.canGoForward()) {
+                    setState(() {
+                      isforword = true;
+                    });
+                  } else {
+                    setState(() {
+                      isforword = false;
+                    });
+                  }
+                },
                 onLoadStop: (context, uri) async {
                   await pullToRefreshController.endRefreshing();
                 },
@@ -168,5 +196,17 @@ class _homeState extends State<home> {
             ),
           ],
         ));
+  }
+
+  iscanback() async {
+    if (await inAppWebViewController.canGoBack()) {
+      setState(() {
+        isback = true;
+      });
+    } else {
+      setState(() {
+        isback = false;
+      });
+    }
   }
 }
