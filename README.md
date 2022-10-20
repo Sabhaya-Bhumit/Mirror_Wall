@@ -1,12 +1,11 @@
 # ott_platforms
 
 
-
-<img src="https://user-images.githubusercontent.com/113710907/196727112-77a455d6-507c-463d-98d7-b379e1f26604.mp4" width="400">
-<img src="https://user-images.githubusercontent.com/113710907/196749635-154f6452-d07f-485b-a0f1-19143f8d895c.jpg" width="400">
-<img src="https://user-images.githubusercontent.com/113710907/196749941-fe980899-8b0a-4651-afab-e4c5873c49de.jpg" width="400">
-<img src="https://user-images.githubusercontent.com/113710907/196749741-e878de2a-33be-49e0-88b4-da34abdc6268.jpg" width="400">
-<img src="https://user-images.githubusercontent.com/113710907/196750170-521fbb32-0bca-40be-87b2-5e4ff51c9c83.jpg" width="400">
+<img src="https://user-images.githubusercontent.com/113710907/196864098-7859c577-c1cb-4f00-affc-7b233a7a0e32.mp4" height="400">
+<img src="https://user-images.githubusercontent.com/113710907/196864067-94623ad5-b24f-402d-837d-22d5228be2c5.jpg" width="400">
+<img src="https://user-images.githubusercontent.com/113710907/196864076-378a4fa4-8d26-4584-953e-0425560d99bb.jpg" width="400">
+<img src="https://user-images.githubusercontent.com/113710907/196864085-1bd2f081-879b-472f-9c78-a95db5b321b8.jpg" width="400">
+<img src="https://user-images.githubusercontent.com/113710907/196864126-84af3fc6-dad0-4123-b81e-2972fd0bc144.jpg" width="400">
 A new Flutter roject.
 
 ## Getting Started
